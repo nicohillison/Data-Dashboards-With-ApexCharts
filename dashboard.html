@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.26.0/dist/apexcharts.min.css">
+  <style>
+    body {
+      background-color: #001f3f;
+      color: #fff;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      padding: 20px;
+    }
+
+    .chart-container {
+      max-width: 100%;
+      height: 350px;
+    }
+  </style>
+</head>
+<body>
+    <div class="chart-container">
+      <div id="chart1"></div>
+    </div>
+    <div class="chart-container">
+      <div id="chart2"></div>
+    </div>
+    <div class="chart-container">
+      <div id="chart3"></div>
+    </div>
+    <div class="chart-container">
+      <div id="chart4"></div>
+    </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.26.0/dist/apexcharts.min.js"></script>
+  <script>
+
+    //choosing constant colors for the charts
+    const colors = ['#03A9F4', '#F44336', '#2196F3', '#FFC107'];
+    
+    // Sample data for chart1 (line chart)
+    const chartData1 = {
+      series: [{
+        name: 'Sales',
+        data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+      }, {
+        name: 'Expenses',
+        data: [20, 10, 15, 30, 39, 50, 60, 81, 105]
+      }],
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+    };
+
+    // Chart1 options
+    const options1 = {
+      chart: {
+        type: 'line',
+        height: 350,
+        background: '#001f3f',
+        foreColor: '#fff',
+      },
+      colors: [colors[0], colors[1]],
+      series: chartData1.series,
+      xaxis: {
+        categories: chartData1.categories,
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: '#fff',
+          },
+        },
+      },
+      theme: {
+        mode: 'dark',
+      },
+    };
+
+    // Initialize chart1
+    const chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+    chart1.render();
+
+    // Sample data for chart2 (bar chart)
+    const chartData2 = {
+      series: [{
+        name: 'Sales',
+        data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+      }, {
+        name: 'Expenses',
+        data: [20, 10, 15, 30, 39, 50, 60, 81, 105]
+      }],
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+    };
+
+    // Chart2 options
+    const options2 = {
+      chart: {
+        type: 'bar',
+        height: 350,
+        background: '#001f3f',
+        foreColor: '#fff',
+      },
+      colors: [colors[0], colors[1]],
+      series: chartData2.series,
+      xaxis: {
+        categories: chartData2.categories,
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: '#fff',
+          },
+        },
+      },
+      theme: {
+        mode: 'dark',
+      },
+    };
+
+    // Initialize chart2
+    const chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+    chart2.render();
+
+    // Sample data for chart3 (pie chart)
+    const chartData3 = {
+    series: [30, 40, 35, 50, 49],
+    labels: ['Apple', 'Banana', 'Orange', 'Mango', 'Grapes']
+    };
+
+    // Chart3 options
+    const options3 = {
+    chart: {
+        type: 'pie',
+        height: 350,
+        background: '#001f3f',
+        foreColor: '#fff',
+    },
+    colors: ['#FF9800', '#E91E63', '#9C27B0', '#03A9F4', '#009688'],
+    series: chartData3.series,
+    labels: chartData3.labels,
+    theme: {
+        mode: 'dark',
+    },
+    };
+
+    // Initialize chart3
+    const chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
+    chart3.render();
+
+    // Sample data for chart4 (radial bar chart)
+    const chartData4 = {
+    series: [75],
+    };
+
+    // Chart4 options
+    const options4 = {
+    chart: {
+        type: 'radialBar',
+        height: 350,
+        background: '#001f3f',
+        foreColor: '#fff',
+    },
+    plotOptions: {
+        radialBar: {
+        hollow: {
+            size: '70%',
+        },
+        },
+    },
+    colors: [colors[0]],
+    series: chartData4.series,
+    labels: ['Progress'],
+    theme: {
+        mode: 'dark',
+    },
+    };
+
+    // Initialize chart4
+    document.addEventListener('DOMContentLoaded', function() {
+    const chart4 = new ApexCharts(document.querySelector("#chart4"), options4);
+    chart4.render();
+    });
+
+
+</script>
+</body>
+</html>

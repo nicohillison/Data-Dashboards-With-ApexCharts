@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ApexCharts Histogram Example</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.27.1/dist/apexcharts.min.css">
+</head>
+<body>
+  <div id="chart"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.27.1/dist/apexcharts.min.js"></script>
+  <script>
+    // Sample data for histogram
+    const histogramData = [
+      {
+        x: 'A',
+        y: 25,
+      },
+      {
+        x: 'B',
+        y: 40,
+      },
+      {
+        x: 'C',
+        y: 30,
+      },
+      {
+        x: 'D',
+        y: 55,
+      },
+      {
+        x: 'E',
+        y: 70,
+      },
+      {
+        x: 'F',
+        y: 45,
+      },
+    ];
+
+    // Configuration options for the chart
+    const chartOptions = {
+      series: [
+        {
+          name: 'Histogram',
+          data: histogramData,
+        },
+      ],
+      chart: {
+        type: 'bar',
+        height: 350,
+        toolbar: {
+          show: false,
+        },
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+        },
+      },
+      xaxis: {
+        categories: ['A', 'B', 'C', 'D', 'E', 'F'],
+      },
+      yaxis: {
+        labels: {
+          formatter: function (value) {
+            return value + ' units';
+          },
+        },
+      },
+    };
+
+    // Create the chart instance
+    const chart = new ApexCharts(document.querySelector("#chart"), chartOptions);
+
+    // Render the chart
+    chart.render();
+  </script>
+</body>
+</html>

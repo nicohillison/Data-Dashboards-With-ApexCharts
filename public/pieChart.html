@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ApexCharts Pie Chart Example</title>
+  <style>
+    .chart-container {
+      width: 100%;
+      float: left;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+    .clear {
+      clear: both;
+    }
+    .dark-mode {
+      background-color: #001f3f;
+      color: #ffffff;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.27.1/dist/apexcharts.min.css">
+</head>
+<body class="dark-mode">
+  <div class="chart-container">
+    <div id="chart"></div>
+  </div>
+  <div class="clear"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.27.1/dist/apexcharts.min.js"></script>
+  <script>
+      // Fetch the JSON data file
+      fetch('./cars.json')
+        .then(response => response.json())
+        .then(jsonData => {
+          // Use the JSON data directly
+          const carsData = jsonData;
+
+          // Filter data for Audi makes
+          const audiData = carsData.filter(car => car.Make === "Chevrolet");
+
+          // Extract the necessary data for the chart
+          const chartData = audiData.map(car => ({
+            name: car.Drive,
+            data: car.HighPrice * 1000 // Multiply by 1000 to display in thousands
+          }));
+
+          // Configuration options for the chart
+          const chartOptions = {
+            series: chartData.map(car => car.data), // Use the 'data' property for the pie chart series
+            labels: chartData.map(car => car.name), // Use the 'name' property for the pie chart labels
+            title: {
+              text: "Audi Model's High Price Cost",
+              align: 'center',
+              style: {
+                color: '#ffffff' // Set the color of the chart title
+              }
+            },
+            chart: {
+              type: 'pie', // Set the chart type to 'pie'
+              height: 500,
+              foreColor: '#fff', // Set the foreground color to white
+              toolbar: {
+                show: true
+              }
+            },
+            legend: {
+              position: 'bottom',
+              horizontalAlign: 'center'
+            },
+            tooltip: {
+              theme: 'dark'
+            }
+          };
+
+          // Create the chart instance
+          const chart = new ApexCharts(document.querySelector("#chart"), chartOptions);
+
+          // Render the chart
+          chart.render().then(() => {
+            chart.theme = {
+              mode: 'dark',
+              palette: 'palette1'
+            };
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+  </script>
+</body>
+</html>

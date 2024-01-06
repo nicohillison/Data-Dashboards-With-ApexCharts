@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ApexCharts Bar Chart Example</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.27.1/dist/apexcharts.min.css">
+</head>
+<body>
+  <div id="chart"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.27.1/dist/apexcharts.min.js"></script>
+  <script>
+    // Sample data for bar chart
+    const barChartData = [
+      {
+        x: 'Category 1',
+        y: 55,
+        color: '#FF4560',
+      },
+      {
+        x: 'Category 2',
+        y: 70,
+        color: '#008FFB',
+      },
+      {
+        x: 'Category 3',
+        y: 45,
+        color: '#00E396',
+      },
+    ];
+
+    // Configuration options for the chart
+    const chartOptions = {
+      series: [
+        {
+          name: 'Variable 1',
+          data: barChartData.map(item => item.y),
+        },
+      ],
+      chart: {
+        type: 'bar',
+        height: 350,
+        toolbar: {
+          show: false,
+        },
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: '55%',
+          distributed: true,
+          colors: {
+            ranges: [
+              {
+                from: 0,
+                to: 0,
+                color: barChartData[0].color,
+              },
+              {
+                from: 1,
+                to: 1,
+                color: barChartData[1].color,
+              },
+              {
+                from: 2,
+                to: 2,
+                color: barChartData[2].color,
+              },
+            ],
+          },
+        },
+      },
+      xaxis: {
+        categories: barChartData.map(item => item.x),
+      },
+      yaxis: {
+        labels: {
+          formatter: function (value) {
+            return value + ' units';
+          },
+        },
+      },
+    };
+
+    // Create the chart instance
+    const chart = new ApexCharts(document.querySelector("#chart"), chartOptions);
+
+    // Render the chart
+    chart.render();
+  </script>
+</body>
+</html>
